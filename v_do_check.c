@@ -1,22 +1,40 @@
 
 #include "v_do_check.h"
-#include "print.h"
+#include "input&output.h"
 #include "players_turns.h"
 
 int n = 6, h_lines[6][5] = {0}, v_lines[6][5] = {0};
-int tkn_dots = 0, all_dots = 36, dots[6][6] = {0};
+int tkn_dots = 0, all_dots = 36, dots[6][6] = {0} , boxes[25];
 
 void update_dots(int r1, int r2, int c1, int c2)
 {
     dots[r1 - 1][c1 - 1]++;
     dots[r2 - 1][c2 - 1]++;
-    if (dots[r1 - 1][c1 - 1] == 2)
-    {
-        tkn_dots++;
+    if ( ((( r1 == 1 ) && ( ( c1 == 1 ) || ( c1 == 6 ) )) || ( (r1 == 6) && ((c1==1)|| (c1==6)) ))){
+        if (dots[r1 - 1][c1 - 1] == 2)
+            tkn_dots++;
+
     }
-    if (dots[r2 - 1][c2 - 1] == 2)
+    else if ( ( r1 == 1 ) || ( c1 == 1 ) || ( c1 == 6 ) || (r1 == 6) ){
+        if (dots[r1 - 1][c1 - 1] == 3 )
+            tkn_dots++;
+    }
+    else
     {
-        tkn_dots++;
+        if ( dots[r1-1][c1-1] == 4 )
+            tkn_dots++;
+    }
+    if ( (( r2 == 1 ) && ( ( c2 == 1 ) || ( c2 == 6 ) ) ) || ( (r2 == 6) && ((c2==1) || (c2==6)) ) ){
+        if (dots[r2 - 1][c2 - 1] == 2)
+            tkn_dots++;
+    }
+    else if ( ( r2 == 1 ) || ( c2 == 1 ) || ( c2 == 6 ) || (r2 == 6) ){
+        if (dots[r2 - 1][c2 - 1] == 3 )
+            tkn_dots++;
+    }
+    else{
+        if ( dots[r2-1][c2-1] == 4 )
+            tkn_dots++;
     }
 }
 
@@ -142,7 +160,6 @@ int v_do_check_(int r1, int r2, int c1, int c2, int turn_)
         int score = check_h(r, c, turn_);
         if (score)
         {
-            printf("nice one\n");
             update_scores(score, turn_);
         }
         else
@@ -156,7 +173,6 @@ int v_do_check_(int r1, int r2, int c1, int c2, int turn_)
         int score = check_v(c, r,turn_);
         if (score)
         {
-            printf("nice one\n");
             update_scores(score, turn_);
         }
         else
@@ -168,9 +184,6 @@ int v_do_check_(int r1, int r2, int c1, int c2, int turn_)
     {
         return turn_;
     }
-    // next player's turn
-    print_grid();
-    print_scores();
-    print_moves();
+    
     return turn_;
 }

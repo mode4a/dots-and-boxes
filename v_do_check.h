@@ -8,7 +8,7 @@
 
 
 extern int n ;
-extern int h_lines[6][5] , v_lines[6][5] , tkn_dots , all_dots , dots[6][6] ;
+extern int h_lines[6][5] , v_lines[6][5] , tkn_dots , all_dots , dots[6][6] , boxes[25] ;
 
 
 int min( int a , int b ) ;

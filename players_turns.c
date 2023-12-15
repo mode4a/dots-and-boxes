@@ -1,6 +1,6 @@
 #include "players_turns.h" 
-#include "input.h"
 #include "v_do_check.h"
+#include "input&output.h"
 
 #define RED_TEXT "\033[31m"
 #define GREEN_TEXT "\033[32m"
@@ -19,6 +19,7 @@ struct player p1 , p2 ;
 //     ret.c2 = rand() % 6 + 1;
 // return ret ;
 // }
+
 struct game_input generate_random(){
     struct game_input ret ;
     int flag = 0 ; 
@@ -52,14 +53,19 @@ void two_player_game(){
 
     while( all_dots - tkn_dots ){
     if ( turn == 0 ){
-    printf(RED_TEXT "player one's turn\n" RESET_TEXT) ;
+    printf(YELLOW_TEXT"player one's turn\n" RESET_TEXT) ;
     }
     else if ( turn == 1 ){
-    printf(GREEN_TEXT"player two's turn\n"RESET_TEXT) ;
+    printf(YELLOW_TEXT"player two's turn\n"RESET_TEXT) ;
     }
     struct game_input my_inp ;
     my_inp = get_input() ;
     turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn );
+    print_grid();
+    print_scores();
+    print_moves();
+    print_remaining_dots();
+    
     }
 
 }   
@@ -74,12 +80,15 @@ void one_player_game(){
     my_inp = get_input() ;
     }
     else if ( turn == 1 ){
-    printf(GREEN_TEXT"computer's turn\n"RESET_TEXT) ;
+    printf(YELLOW_TEXT"computer's turn\n"RESET_TEXT) ;
     my_inp = generate_random()  ;
     }
+    print_grid();
+    print_scores();
+    print_moves();
+    print_remaining_dots();
     turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn );
     }
-
 }
 void update_scores( int score , int turn_  ){
     if ( !turn_ ){
