@@ -17,9 +17,9 @@ int is_H_or_v ( int r1 , int r2 , int c1 , int c2 ) ;
 
 int valid_make_line( int r1 , int r2 , int c1 , int c2 , int turn_ ) ;
 
-int check_h( int r , int c ) ;
+int check_h( int r , int c,int box_turn ) ;
 
-int check_v( int c , int r ) ;
+int check_v( int c , int r,int box_turn) ;
 
 int v_do_check_( int r1 , int r2 , int c1 , int c2 , int turn_ ) ;
 

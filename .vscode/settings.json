@@ -1,3 +1,9 @@
 {
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "*.rmd": "markdown",
+        "v_do_check.h": "c",
+        "limits": "c",
+        "*.tcc": "c"
+    }
 }
