@@ -3,12 +3,11 @@
 
 #include<stdlib.h>
 
-
 extern int turn ;
 
 struct player{
     char name[50] ;  
-    int score ;   
+    int score ;
     int num_of_moves ;
 };
 

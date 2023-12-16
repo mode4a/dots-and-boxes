@@ -57,6 +57,7 @@ void one_player_game(){
     my_inp = generate_random()  ;
     }
     turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn );
+    
     print_grid();
     print_scores();
     print_moves();
