@@ -24,8 +24,7 @@ void two_player_game(){
     my_inp = get_input() ;
     all_inputs[p1.num_of_moves+p2.num_of_moves].turn = turn ;
     if( my_inp.r1 > 0 ){
-    turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn );
-    num_of_undo_done = 0 ; // can't do redo after this move 
+    turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn ); 
     print_grid();
     print_scores();
     print_moves();

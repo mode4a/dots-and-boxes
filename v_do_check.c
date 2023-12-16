@@ -80,6 +80,7 @@ int valid_make_line(int r1, int r2, int c1, int c2, int turn_)
         all_inputs[p1.num_of_moves+p2.num_of_moves].r2 = r2 ;
         all_inputs[p1.num_of_moves+p2.num_of_moves].c1 = c1 ;
         all_inputs[p1.num_of_moves+p2.num_of_moves].c2 = c2 ;
+        num_of_undo_done = 0 ; // can't do redo after this move
         if (is_H_or_v(r1, r2, c1, c2) == 1)
         {
             int r = r1 - 1, c = min(c1, c2) - 1;
