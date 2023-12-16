@@ -2,7 +2,7 @@
 #include "v_do_check.h"
 #include "input&output.h"
 #include "options.h"
-
+#include "top_10.h"
 int turn = 0 ;
 struct player p1 , p2 ;
 
@@ -39,6 +39,22 @@ void two_player_game(){
         print_moves();
         print_remaining_dots();
     }
+    }
+    if (p1.score > p2.score)
+    {
+        printf("plese enter the name of player one : ");
+        scanf("%s",winner.name);
+        saving_champion(p1.score);
+        // showing_champion();
+    }
+    else if (p1.score < p2.score)
+    {
+        printf("plese enter the name of player two : ");
+        scanf("%s",winner.name);
+        saving_champion(p2.score);
+        // showing_champion();
+    }else{
+        printf("----------------Draw------------------");
     }
 
 }   
@@ -79,6 +95,19 @@ void one_player_game(){
         print_moves();
         print_remaining_dots();
     }
+    }
+    if (p1.score > p2.score)
+    {
+        printf("plese enter the name of player : ");
+        scanf("%s",winner.name);
+        saving_champion(p1.score);
+        // showing_champion();
+    }
+    else if (p1.score < p2.score)
+    {
+        printf("you lose :( ");
+    }else{
+        printf("----------------Draw------------------");
     }
 }
 void update_scores( int score , int turn_  ){
