@@ -22,8 +22,8 @@ void two_player_game(){
     }
     struct game_input my_inp ;
     my_inp = get_input() ;
-    all_inputs[p1.num_of_moves+p2.num_of_moves].turn = turn ;
-    if( my_inp.r1 > 0 ){
+    if( my_inp.r1 >= 0 ){
+    all_inputs[p1.num_of_moves+p2.num_of_moves].turn = turn ; // tracking turn
     turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn ); 
     print_grid();
     print_scores();
@@ -53,15 +53,32 @@ void one_player_game(){
     my_inp = get_input() ;
     }
     else if ( turn == 1 ){
+    computer_moves++ ;
+    all_inputs[p1.num_of_moves+p2.num_of_moves].compu_move_this_point = computer_moves ;
     printf(YELLOW_TEXT"computer's turn\n"RESET_TEXT) ;
     my_inp = generate_random()  ;
     }
+    if ( my_inp.r1 >= 0 ){
+    if( turn == 0 ){
+        computer_moves = 0 ; 
+        all_inputs[p1.num_of_moves+p2.num_of_moves].compu_move_this_point = computer_moves ;
+    }
+    all_inputs[p1.num_of_moves+p2.num_of_moves].turn = turn ;
     turn = v_do_check_( my_inp.r1 , my_inp.r2 , my_inp.c1 , my_inp.c2 , turn );
-    
     print_grid();
     print_scores();
     print_moves();
     print_remaining_dots();
+    }
+    else{
+        turn = options_window();
+        if ( turn == -1 )
+        break;
+        print_grid();
+        print_scores();
+        print_moves();
+        print_remaining_dots();
+    }
     }
 }
 void update_scores( int score , int turn_  ){

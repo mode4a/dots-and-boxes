@@ -58,7 +58,7 @@ return ret ;
 void print_grid()
 {
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0 ; i < n ; ++i )
     {
         for (int j = 0; j < n - 1; ++j)
         {
@@ -76,9 +76,9 @@ void print_grid()
             }
         }
         printf("+\n");
-        if (i < 5)
+        if (i < (n-1))
         {
-            for (int j = 0; j < n; ++j)
+            for (int j = 0; j < n ; ++j)
             {
                 if (v_lines[j][i] == 1)
                 {
@@ -92,12 +92,12 @@ void print_grid()
                 {
                     printf(" ");
                 }
-                if ( j < 5 ){
-                if (boxes[5 * i + j] == 1)
+                if ( j < (n-1) ){
+                if (boxes[(n-1) * i + j] == 1)
                 {
                     printf(RED_BOX "   " RESET_TEXT);
                 }
-                else if (boxes[5 * i + j] == 2)
+                else if (boxes[(n-1) * i + j] == 2)
                 {
                     printf(GREEN_BOX "   " RESET_TEXT);
                 }

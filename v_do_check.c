@@ -11,14 +11,14 @@ void update_dots(int r1, int r2, int c1, int c2)
 {
     dots[r1 - 1][c1 - 1]++;
     dots[r2 - 1][c2 - 1]++;
-    if ( ((( r1 == 1 ) && ( ( c1 == 1 ) || ( c1 == 6 ) )) || ( (r1 == 6) && ((c1==1)|| (c1==6)) ))){
+    if ( ((( r1 == 1 ) && ( ( c1 == 1 ) || ( c1 == n ) )) || ( (r1 == n) && ((c1==1)|| (c1==n)) ))){
         if (dots[r1 - 1][c1 - 1] == 2){
             tkn_dots++;
             all_inputs[p1.num_of_moves+p2.num_of_moves].full_dots[0] = 1 ; // traking the full dots 
         }
 
     }
-    else if ( ( r1 == 1 ) || ( c1 == 1 ) || ( c1 == 6 ) || (r1 == 6) ){
+    else if ( ( r1 == 1 ) || ( c1 == 1 ) || ( c1 == n ) || (r1 == n) ){
         if (dots[r1 - 1][c1 - 1] == 3 ){
             tkn_dots++;
             all_inputs[p1.num_of_moves+p2.num_of_moves].full_dots[0] = 1 ;
@@ -31,13 +31,13 @@ void update_dots(int r1, int r2, int c1, int c2)
             all_inputs[p1.num_of_moves+p2.num_of_moves].full_dots[0] = 1 ;
         }
     }
-    if ( (( r2 == 1 ) && ( ( c2 == 1 ) || ( c2 == 6 ) ) ) || ( (r2 == 6) && ((c2==1) || (c2==6)) ) ){
+    if ( (( r2 == 1 ) && ( ( c2 == 1 ) || ( c2 == n ) ) ) || ( (r2 == n) && ((c2==1) || (c2==n)) ) ){
         if (dots[r2 - 1][c2 - 1] == 2){
             tkn_dots++;
             all_inputs[p1.num_of_moves+p2.num_of_moves].full_dots[1] = 1 ;
         }
     }
-    else if ( ( r2 == 1 ) || ( c2 == 1 ) || ( c2 == 6 ) || (r2 == 6) ){
+    else if ( ( r2 == 1 ) || ( c2 == 1 ) || ( c2 == n ) || (r2 == n) ){
         if (dots[r2 - 1][c2 - 1] == 3 ){
             tkn_dots++;
             all_inputs[p1.num_of_moves+p2.num_of_moves].full_dots[1] = 1 ;
@@ -79,7 +79,11 @@ int valid_make_line(int r1, int r2, int c1, int c2, int turn_)
         all_inputs[p1.num_of_moves+p2.num_of_moves].r2 = r2 ;
         all_inputs[p1.num_of_moves+p2.num_of_moves].c1 = c1 ;
         all_inputs[p1.num_of_moves+p2.num_of_moves].c2 = c2 ;
+        if ( game_mode == 2 )
         num_of_undo_done = 0 ; // can't do redo after this move
+        else
+            if ( turn == 0 )
+                num_of_undo_done = 0 ; // can't do redo after this move
         if (is_H_or_v(r1, r2, c1, c2) == 1)
         {
             int r = r1 - 1, c = min(c1, c2) - 1;
@@ -133,8 +137,8 @@ int check_h(int r, int c, int box_turn)
         if (h_lines[r - 1][c] && v_lines[c][r - 1] && v_lines[c + 1][r - 1])
         {
             ret++;
-            boxes[5 * (r - 1) + c] = box_turn+1;
-            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] = 5 * (r - 1) + c ; // traking indicies off boxes gettin in this move
+            boxes[(n-1) * (r - 1) + c] = box_turn+1;
+            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] = (n-1) * (r - 1) + c ; // traking indicies off boxes gettin in this move
         }
         else
             all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] = -1 ;
@@ -146,8 +150,8 @@ int check_h(int r, int c, int box_turn)
         if (h_lines[r + 1][c] && v_lines[c][r] && v_lines[c + 1][r])
         {
             ret++;
-            boxes[5 * (r) + c] = box_turn+1;
-            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = 5 * r + c ;
+            boxes[(n-1) * (r) + c] = box_turn+1;
+            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = (n-1) * r + c ;
         }
         else
             all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = -1 ;
@@ -164,8 +168,8 @@ int check_v(int c, int r,int box_turn)
         if (v_lines[c - 1][r] && h_lines[r][c - 1] && h_lines[r + 1][c - 1])
         {
             ret++;
-            boxes[5 * (r) + c - 1] = box_turn+1;
-            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] = (5 * r + c - 1) ; // traking indicies off boxes gettin in this move
+            boxes[(n-1) * (r) + c - 1] = box_turn+1;
+            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] = ((n-1) * r + c - 1) ; // traking indicies off boxes gettin in this move
         }
         else
             all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[0] =  -1 ;
@@ -177,8 +181,8 @@ int check_v(int c, int r,int box_turn)
         if (v_lines[c + 1][r] && h_lines[r][c] && h_lines[r + 1][c])
         {
             ret++;
-            boxes[5 * (r) + c ] = box_turn+1;
-            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = (5 * r + c) ; 
+            boxes[(n-1) * (r) + c ] = box_turn+1;
+            all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = ((n-1) * r + c) ; 
         }
         else
             all_inputs[p1.num_of_moves+p2.num_of_moves-1].boxs_indx[1] = -1  ;
