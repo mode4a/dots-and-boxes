@@ -3,8 +3,9 @@
 #include "players_turns.h"
 #include "input&output.h"
 #include"options.h"
+#include"save.h"
 
-
+int game_mode ;
 
 struct game_input get_input(){
     struct game_input ret ;
@@ -125,13 +126,21 @@ void print_remaining_dots(){
     printf( PINK_TEXT"remaining dots = %d\n"RESET_TEXT , (all_dots-tkn_dots) ) ;
 }
 void main_menu(){
-    printf(PINK_TEXT"hello in dots and boxes !\n"RESET_TEXT YELLOW_TEXT "1_one player game" RESET_TEXT BLUE_TEXT  "\n2_two player game\n" RESET_TEXT ) ;
+    printf(PINK_TEXT"hello in dots and boxes !\n"RESET_TEXT 
+    YELLOW_TEXT "1_one player game\n" RESET_TEXT
+    BLUE_TEXT  "2_two player game\n" RESET_TEXT
+    RED_TEXT "3_load game\n" RESET_TEXT ) ;
     int n ; scanf( "%d" , &n ) ;
     if ( n == 1 ){
+        game_mode = 1 ; 
         one_player_game() ;
     }
     else if ( n == 2 ){
+        game_mode = 2 ;
         two_player_game() ;
+    }
+    else if ( n == 3 ){
+        load_game();
     }
     
 }

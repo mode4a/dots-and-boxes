@@ -10,8 +10,8 @@ struct player p1 , p2 ;
 
 
 void two_player_game(){
-    p1.score = 0 ; p1.num_of_moves = 0 ;
-    p2.score = 0 ; p2.num_of_moves = 0 ;
+    // p1.score = 0 ; p1.num_of_moves = 0 ;
+    // p2.score = 0 ; p2.num_of_moves = 0 ;
 
     while( all_dots - tkn_dots ){
     if ( turn == 0 ){
@@ -32,6 +32,8 @@ void two_player_game(){
     }
     else{
         turn = options_window();
+        if ( turn == -1 )
+        break;
         print_grid();
         print_scores();
         print_moves();
@@ -42,8 +44,8 @@ void two_player_game(){
 }   
 
 void one_player_game(){
-    p1.score = 0 ; p1.num_of_moves = 0 ;
-    p2.score = 0 ; p2.num_of_moves = 0 ;
+    // p1.score = 0 ; p1.num_of_moves = 0 ;
+    // p2.score = 0 ; p2.num_of_moves = 0 ;
     while( all_dots - tkn_dots ){
     struct game_input my_inp ;
     if ( turn == 0 ){

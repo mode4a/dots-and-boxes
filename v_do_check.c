@@ -73,9 +73,8 @@ int is_H_or_v(int r1, int r2, int c1, int c2)
 
 int valid_make_line(int r1, int r2, int c1, int c2, int turn_)
 {
-    if (r1 <= n && r1 > 0 && r2 <= n && r2 > 0 && c1 <= n && c1 > 0 && c2 <= n && c2 > 0 )
+    if (r1 <= n && r1 > 0 && r2 <= n && r2 > 0 && c1 <= n && c1 > 0 && c2 <= n && c2 > 0 && abs(r1-r2) <= 1 && abs(c1-c2) <= 1  )
     {
-        if ( abs(r1-r2) <= 1 && abs(c1-c2) <= 1 ){
         all_inputs[p1.num_of_moves+p2.num_of_moves].r1 = r1 ; // tracking the move 
         all_inputs[p1.num_of_moves+p2.num_of_moves].r2 = r2 ;
         all_inputs[p1.num_of_moves+p2.num_of_moves].c1 = c1 ;
@@ -115,16 +114,9 @@ int valid_make_line(int r1, int r2, int c1, int c2, int turn_)
         }
         else
         {
-            printf("invalid input !\ntry again\n");
-            return -1;
-        }
-        
-    }
-    else
-    {
         printf("invalid input\ntry again\n");
         return -1;
-    }
+        }
     }
     else
     {

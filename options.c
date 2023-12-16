@@ -2,6 +2,7 @@
 #include"players_turns.h"
 #include"v_do_check.h"
 #include"input&output.h"
+#include"save.h"
 
 int num_of_undo_done = 0 ; 
 struct store_for_undo all_inputs[60] ;
@@ -87,10 +88,9 @@ int redo (){
         }
     }
     return last_move.turn ;
-
 }
 int options_window(){
-    printf("1_undo\n2_redo\n") ;int cho ;scanf("%d" , &cho );
+    printf("1_undo\n2_redo\n3_save\n4_exit\n") ;int cho ;scanf("%d" , &cho );
     if ( cho == 1 ){
         num_of_undo_done++ ;
         return undo() ;
@@ -104,6 +104,12 @@ int options_window(){
         printf("can't do redo at this position!\nno previous undo!!\n") ;
         return turn ; 
         }
+    }
+    else if ( cho == 3 ){
+        return save_game() ;
+    }
+    else if ( cho == 4 ){
+        return -1 ;
     }
     else{
         printf("invalid input\n") ;

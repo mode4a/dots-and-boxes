@@ -24,6 +24,7 @@ struct game_input
     int c2 ;
 };
 
+extern int game_mode ;
 
 struct game_input get_input() ;
 struct game_input generate_random();
