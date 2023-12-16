@@ -2,14 +2,56 @@
 #include "v_do_check.h"
 #include "players_turns.h"
 #include "input&output.h"
+#include"options.h"
 
 
 
 struct game_input get_input(){
     struct game_input ret ;
-    scanf( "%d %d %d %d" , &ret.r1 , &ret.r2 , &ret.c1 , &ret.c2 ) ;
-    // all_inputs[p1.num_of_moves+p2.num_of_moves] = ret ;
+    scanf( "%d" , &ret.r1 ) ;
+    if( ret.r1 > 0 ){
+        scanf( "%1d%1d%1d" , &ret.r2 , &ret.c1 , &ret.c2 ) ;
+    }
+    else{
+        return ret ; 
+    }
     return ret ; 
+}
+
+// struct game_input generate_random(){
+//     struct game_input ret ; 
+//     ret.r1 = rand() % 6 + 1;  // Generates a number between 1 and 6
+//     ret.r2 = rand() % 6 + 1;
+//     ret.c1 = rand() % 6 + 1;
+//     ret.c2 = rand() % 6 + 1;
+// return ret ;
+// }
+
+struct game_input generate_random(){
+    struct game_input ret ;
+    int flag = 0 ; 
+    for( int i = 0 ; i < n ; ++i ){
+        for ( int j = 0 ; j < n-1 ; ++j ){
+            if ( h_lines[i][j] == 0 ){
+                ret.r1 = i+1 ; ret.r2 = i+1 ;
+                ret.c1 = j+1 ; ret.c2 = j+2 ;
+                flag = 1 ;
+                return ret ;
+            }
+        }
+    }
+    if ( !flag ){
+    for( int i = 0 ; i < n ; ++i ){
+        for ( int j = 0 ; j < n-1 ; ++j ){
+            if ( v_lines[i][j] == 0 ){
+                ret.r1 = j+1 ; ret.r2 = j+2 ;
+                ret.c1 = i+1 ; ret.c2 = i+1 ;
+                return ret  ; 
+            }
+        }
+    }
+}
+return ret ;
 }
 
 void print_grid()
@@ -49,11 +91,12 @@ void print_grid()
                 {
                     printf(" ");
                 }
-                if (boxes[6 * i + j] == 1)
+                if ( j < 5 ){
+                if (boxes[5 * i + j] == 1)
                 {
                     printf(RED_BOX "   " RESET_TEXT);
                 }
-                else if (boxes[6 * i + j] == 2)
+                else if (boxes[5 * i + j] == 2)
                 {
                     printf(GREEN_BOX "   " RESET_TEXT);
                 }
@@ -61,6 +104,8 @@ void print_grid()
                 {
                     printf("   ");
                 }
+                }
+
             }
             printf("\n");
         }
@@ -90,3 +135,4 @@ void main_menu(){
     }
     
 }
+

@@ -24,9 +24,9 @@ struct game_input
     int c2 ;
 };
 
-// struct game_input all_inputs[60] ;
 
 struct game_input get_input() ;
+struct game_input generate_random();
 void print_grid() ;
 void print_scores () ;
 void print_moves() ;

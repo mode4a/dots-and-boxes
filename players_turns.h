@@ -14,7 +14,7 @@ struct player{
 
 extern struct player p1 , p2 ;
 
-struct game_input generate_random();
+
 void two_player_game();
 void one_player_game();
 void update_scores( int score , int turn_ ) ;
