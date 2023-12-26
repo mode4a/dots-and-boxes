@@ -5,6 +5,7 @@
 #include "options.h"
 
 int n = 6, h_lines[6][5] = {0}, v_lines[6][5] = {0};
+
 int tkn_dots = 0, all_dots = 36, dots[6][6] = {0} , boxes[25];
 
 void update_dots(int r1, int r2, int c1, int c2)

@@ -3,17 +3,23 @@
 #include "input&output.h"
 #include "options.h"
 #include "top_10.h"
+#include <time.h>
 int turn = 0 ;
 struct player p1 , p2 ;
 
 
-
+void print_game_time(clock_t start_time) {
+    clock_t current_time = clock();
+    int elapsed_time = ( start_time)/ CLOCKS_PER_SEC;
+    printf("game time:%i minutes %d seconds\n",elapsed_time/60, elapsed_time%60);
+    
+}
 
 void two_player_game(){
     // p1.score = 0 ; p1.num_of_moves = 0 ;
     // p2.score = 0 ; p2.num_of_moves = 0 ;
-
-    while( all_dots - tkn_dots ){
+    while( n*n - tkn_dots ){
+    clock_t start_time = clock();
     if ( turn == 0 ){
     printf(YELLOW_TEXT"player one's turn\n" RESET_TEXT) ;
     }
@@ -28,6 +34,7 @@ void two_player_game(){
     print_grid();
     print_scores();
     print_moves();
+    print_game_time(start_time);
     print_remaining_dots();
     }
     else{
@@ -62,7 +69,8 @@ void two_player_game(){
 void one_player_game(){
     // p1.score = 0 ; p1.num_of_moves = 0 ;
     // p2.score = 0 ; p2.num_of_moves = 0 ;
-    while( all_dots - tkn_dots ){
+    while( n*n - tkn_dots ){
+    clock_t start_time = clock();
     struct game_input my_inp ;
     if ( turn == 0 ){
     printf(YELLOW_TEXT"your turn\n"RESET_TEXT) ;
@@ -84,6 +92,7 @@ void one_player_game(){
     print_grid();
     print_scores();
     print_moves();
+    print_game_time(start_time);
     print_remaining_dots();
     }
     else{

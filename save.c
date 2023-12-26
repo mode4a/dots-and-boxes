@@ -11,6 +11,7 @@ void saving1()
         fwrite(&game_mode, sizeof(int), 1, game);
         fwrite(v_lines, sizeof(int), 30, game);
         fwrite(h_lines, sizeof(int), 30, game);
+        fwrite(&n,sizeof(int),1,game);
         fwrite(boxes, sizeof(int), 25, game);
         fwrite(&p1, sizeof(struct player), 1, game);
         fwrite(&p2, sizeof(struct player), 1, game);
@@ -35,6 +36,7 @@ void saving2()
         fwrite(&game_mode, sizeof(int), 1, game);
         fwrite(v_lines, sizeof(int), 30, game);
         fwrite(h_lines, sizeof(int), 30, game);
+        fwrite(&n,sizeof(int),1,game);
         fwrite(boxes, sizeof(int), 25, game);
         fwrite(&p1, sizeof(struct player), 1, game);
         fwrite(&p2, sizeof(struct player), 1, game);
@@ -59,6 +61,7 @@ void saving3()
         fwrite(&game_mode, sizeof(int), 1, game);
         fwrite(v_lines, sizeof(int), 30, game);
         fwrite(h_lines, sizeof(int), 30, game);
+        fwrite(&n,sizeof(int),1,game);
         fwrite(boxes, sizeof(int), 25, game);
         fwrite(&p1, sizeof(struct player), 1, game);
         fwrite(&p2, sizeof(struct player), 1, game);
@@ -84,6 +87,7 @@ void reading1()
         fread(&game_mode, sizeof(int), 1, game);
         fread(v_lines, sizeof(int), 30, game);
         fread(h_lines, sizeof(int), 30, game);
+        fread(&n,sizeof(int),1,game);
         fread(boxes, sizeof(int), 25, game);
         fread(&p1, sizeof(struct player), 1, game);
         fread(&p2, sizeof(struct player), 1, game);
@@ -124,6 +128,7 @@ void reading2()
         fread(&game_mode, sizeof(int), 1, game);
         fread(v_lines, sizeof(int), 30, game);
         fread(h_lines, sizeof(int), 30, game);
+        fread(&n,sizeof(int),1,game);
         fread(boxes, sizeof(int), 25, game);
         fread(&p1, sizeof(struct player), 1, game);
         fread(&p2, sizeof(struct player), 1, game);
@@ -164,6 +169,7 @@ void reading3()
         fread(&game_mode, sizeof(int), 1, game);
         fread(v_lines, sizeof(int), 30, game);
         fread(h_lines, sizeof(int), 30, game);
+        fread(&n,sizeof(int),1,game);
         fread(boxes, sizeof(int), 25, game);
         fread(&p1, sizeof(struct player), 1, game);
         fread(&p2, sizeof(struct player), 1, game);

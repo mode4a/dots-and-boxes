@@ -1,6 +1,8 @@
 {
     "files.associations": {
-        "math.h": "c",
-        "stdlib.h": "c"
+        "*.rmd": "markdown",
+        "time.h": "c",
+        "players_turns.h": "c",
+        "input&output.h": "c"
     }
 }
