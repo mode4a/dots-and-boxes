@@ -1,11 +1,7 @@
 #ifndef SAVE
 #define SAVE
-void saving1();
-void saving2();
-void saving3();
-void reading1();
-void reading2();
-void reading3();
+void saving(FILE* game);
+void reading(FILE* game);
 int save_game();
 void load_game();
 #endif

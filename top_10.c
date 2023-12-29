@@ -83,3 +83,36 @@ void saving_champion(int high_score)
         }
     }
 }
+void top_10_calling_2_players(){
+    if (p1.score > p2.score)
+    {
+        printf("plese enter the name of player one : ");
+        scanf("%s",winner.name);
+        saving_champion(p1.score);
+        // showing_champion();
+    }
+    else if (p1.score < p2.score)
+    {
+        printf("plese enter the name of player two : ");
+        scanf("%s",winner.name);
+        saving_champion(p2.score);
+        // showing_champion();
+    }else{
+        printf("----------------Draw------------------");
+    }
+}
+void top_10_calling_1_player(){
+    if (p1.score > p2.score)
+    {
+        printf("plese enter the name of player : ");
+        scanf("%s",winner.name);
+        saving_champion(p1.score);
+        // showing_champion();
+    }
+    else if (p1.score < p2.score)
+    {
+        printf("you lose :( ");
+    }else{
+        printf("----------------Draw------------------");
+    }
+}
