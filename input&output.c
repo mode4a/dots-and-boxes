@@ -4,6 +4,7 @@
 #include "input&output.h"
 #include"options.h"
 #include"save.h"
+#include"top_10.h"
 
 int game_mode ;
 
@@ -193,7 +194,8 @@ void main_menu(){
     printf(PINK_TEXT"hello in dots and boxes !\n"RESET_TEXT 
     YELLOW_TEXT "1 one player game\n" RESET_TEXT
     BLUE_TEXT  "2 two player game\n" RESET_TEXT
-    RED_TEXT "3 load game\n" RESET_TEXT ) ;
+    RED_TEXT "3 load game\n" RESET_TEXT
+    GREEN_TEXT"4 show champions list\n"RESET_TEXT) ;
 
     if ( scanf( "%d" , &game_mode ) < 0 ){
         printf("you can only enter 1 2 3 or 4\n");
@@ -224,6 +226,10 @@ void main_menu(){
     else if ( game_mode == 3 ){
         load_game();
     }
+    else if ( game_mode == 4 ){
+        showing_champion();
+    }
+    
     }
     
 }

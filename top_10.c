@@ -8,17 +8,17 @@
 top_10 winner;
 top_10 array[50];
 int number_of_players= 0;
-int comparePeople(const void *a, const void *b)
+int compare_score(const void *a, const void *b)
 {
-    // Assuming you want to sort by score
-    return ((top_10 *)b)->score - ((top_10 *)a)->score;
+    top_10 x=*(top_10*)a, y=*(top_10*)b;
+    return y.score-x.score;
 }
 void showing_champion()
 {
     FILE *champions = fopen("champions.bin", "rb+");
     fread(array, sizeof(top_10), 50, champions);
     fread(&number_of_players,sizeof(int),1,champions);
-    qsort(array, number_of_players, sizeof(top_10), comparePeople);
+    qsort(array, number_of_players, sizeof(top_10), compare_score);
     printf("   name                    score  \n");
     for (int i = 0; i < 10; i++)
     {
@@ -60,7 +60,7 @@ void saving_champion(int high_score)
             {
                 array[counter].score = high_score;
                 FILE *old_champions = fopen("champions.bin", "wb+");
-                qsort(array, number_of_players, sizeof(top_10), comparePeople);
+                qsort(array, number_of_players, sizeof(top_10), compare_score);
                 fwrite(array, sizeof(winner), 50, old_champions);
                 fclose(old_champions);
                 showing_champion();
@@ -75,7 +75,7 @@ void saving_champion(int high_score)
                 array[i].score = 000;
             }
             FILE *old_champions = fopen("champions.bin", "wb+");
-            qsort(array, number_of_players, sizeof(top_10), comparePeople);
+            qsort(array, number_of_players, sizeof(top_10), compare_score);
             fwrite(array, sizeof(winner), 50, old_champions);
             fwrite(&number_of_players, sizeof(int), 1, old_champions);
             fclose(old_champions);
